@@ -52,7 +52,7 @@ export default {
     methods: {
         createMessage () {
             if (this.newmessage) {
-                fb.collection('users/'+ this.chatId + '/messages').add({
+                fb.collection('chatrooms/'+ this.chatId + '/messages').add({
                     user: this.username,
                     message: this.newmessage,
                     timestamp: Date.now()
@@ -68,7 +68,7 @@ export default {
         this.name = localStorage.getItem('username');
     },
     created() {
-        let ref = fb.collection('users/'+ this.chatId + '/messages').orderBy('timestamp');
+        let ref = fb.collection('chatrooms/'+ this.chatId + '/messages').orderBy('timestamp');
         ref.onSnapshot(snapshot => {
             snapshot.docChanges().forEach(change => {
                 if (change.type = 'added') {

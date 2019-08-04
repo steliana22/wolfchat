@@ -11,7 +11,6 @@
 				<input type="text" class="form-control" placeholder="Name this chat" name="chatname" v-model="chatname">
 				<button class="btn btn-primary" @click="createChatroom">Create</button>
 			</div>
-
 		</div>
 		<div id="locationModal" class="locationmodal">
 			<div class="locationmodal-content">
@@ -41,14 +40,14 @@ export default {
             lat: null,
 			lng: null,
 			chatname: "",
-			users: [],
+			chatrooms: [],
 			clicked: 0,
 			marker: null
         }
 	},
 	methods: {
 		createChatroom(){ 
-			fb.collection('users').add({ 
+			fb.collection('chatrooms').add({ 
 					chatname: this.chatname,
 					lat: this.lat,
 					lng: this.lng,
@@ -155,9 +154,9 @@ export default {
   position: absolute;
   width: 400px; 
   height: 100px;
-  /* top: 20px;
+  top: 20px;
   left: 50%;
-  margin-left: -200px; */
+  margin-left: -200px;
   z-index: 1;
 }
 .locationmodal-content{

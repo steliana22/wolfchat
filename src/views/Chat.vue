@@ -14,14 +14,14 @@
                 </div>
         <div class="card">
             <div class="card-body chatlist">
-                <p class="text-secondary nomessages" v-if="users.length == 0"> Nothing to show here. <br/> Use the + button to create a new chat </p>
+                <p class="text-secondary nomessages" v-if="chatrooms.length == 0"> Nothing to show here. <br/> Use the + button to create a new chat </p>
                 <div class="messages" v-chat-scroll="{always: false, smooth: true}">
-                    <div v-for="user in filteredList" :key="user.id">
-                        <div class="chatroom" @click="gotoMessages(user.id, user.chatname, user.lat, user.lng)">
+                    <div v-for="chatroom in filteredList" :key="chatroom.id">
+                        <div class="chatroom" @click="gotoMessages(chatroom.id, chatroom.chatname, chatroom.lat, chatroom.lng)">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <h5 class="text-dark userChatName">{{ user.chatname }}</h5>
-                                    <small>{{ user.lat }} <b> x </b> {{ user.lng }}</small>
+                                    <h5 class="text-dark chatName">{{ chatroom.chatname }}</h5>
+                                    <small>{{ chatroom.lat }} <b> x </b> {{ chatroom.lng }}</small>
                                 </div>
                                 <div class="col-md-3">
                                     <font-awesome-icon icon="chevron-right" size="2x" style="margin-top:5px"/>
@@ -43,7 +43,7 @@ export default {
     name: 'Chat',
     data() {
         return {
-            users: [],
+            chatrooms: [],
             name: "",
             search: ''
         }
@@ -62,18 +62,18 @@ export default {
     },
     computed: {
         filteredList() {
-            return this.users.filter(user => {
-                return user.chatname.toLowerCase().includes(this.search.toLowerCase())
+            return this.chatrooms.filter(chatroom => {
+                return chatroom.chatname.toLowerCase().includes(this.search.toLowerCase())
             })
         }
     },
     created() {
-        let ref = fb.collection('users').orderBy('timestamp');
+        let ref = fb.collection('chatrooms').orderBy('timestamp');
         ref.onSnapshot(snapshot => {
             snapshot.docChanges().forEach(change => {
                 if (change.type = 'added') {
                     let doc = change.doc;
-                    this.users.push({
+                    this.chatrooms.push({
                         id: doc.id,
                         chatname: doc.data().chatname,
                         lat: doc.data().lat,
@@ -103,7 +103,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.userChatName {
+.chatName {
     margin-bottom: 0px;
     word-wrap: break-word;
 }
