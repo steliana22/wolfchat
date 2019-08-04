@@ -54,11 +54,18 @@ gcloud container clusters create wolfchat-web-cluster1
 
 gcloud container clusters get-credentials wolfchat-web-cluster1
 
-kubectl run wolfchat-app --image eu.gcr.io/wolfchat-fcb50/wolfchat:0.1 --port 8080
 
-kubectl expose deployment wolfchat-app --type LoadBalancer \
+##test run
+
+kubectl run wolfchat-web --image eu.gcr.io/wolfchat-fcb50/wolfchat:0.2 --port 8080
+
+kubectl expose deployment wolfchat --type LoadBalancer \
   --port 80 --target-port 8080
 
-kubectl get service wolfchat-app
+kubectl get service wolfchat-web
 
-gcloud builds submit --config cloudbuild.yaml .                                   
+                             
+### CI/CD
+
+https://medium.com/platformer-blog/ci-cd-with-gke-and-google-cloud-build-98a797ecf346
+
