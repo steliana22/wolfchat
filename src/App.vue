@@ -137,20 +137,27 @@ export default {
   z-index: 1;
   left: 0;
   top: 0;
-  width: 300px; 
-  height: 200px; 
+  width: 100%; 
+  height: 100%; 
   overflow: auto; 
   background-color: rgb(0,0,0); 
   background-color: rgba(0,0,0,0.4); 
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30% !important;
 }
 .locationmodal {
   display: none; 
   position: absolute;
   width: 400px; 
-  height: 50px;
-  top: 20px;
+  height: 100px;
+  /* top: 20px;
   left: 50%;
-  margin-left: -200px;
+  margin-left: -200px; */
   z-index: 1;
 }
 .locationmodal-content{
@@ -159,12 +166,5 @@ background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
   width: 100%;
-}
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; 
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30% !important;
 }
 </style>
