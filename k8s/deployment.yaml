@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: wolfchat
+  name: wolfchat
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: wolfchat
+  template:
+    metadata:
+      labels:
+        run: wolfchat
+    spec:
+      containers:
+      - image: eu.gcr.io/wolfchat-fcb50/wolfchat:latest
+        name: wolfchat
+        ports:
+        - containerPort: 8080

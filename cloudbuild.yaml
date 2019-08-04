@@ -1,12 +1,41 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'eu.gcr.io/wolfchat-fcb50/wolfchat', '.']
-  timeout: 500s
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'eu.gcr.io/wolfchat-fcb50/wolfchat']
-- name: 'gcr.io/cloud-builders/gke-deploy:stable'
-  args:
-  - 'run'
-  - '--image=eu.gcr.io/wolfchat-fcb50/wolfchat'
-  - '--location=europe-west3-a'
-  - '--cluster=wolfchat-web-cluster1'
+#step 1
+- name: 'gcr.io/cloud-builders/docker' 
+  entrypoint: 'bash'
+  args: [
+   '-c', 
+   'docker pull eu.gcr.io/$PROJECT_ID/wolfchat:latest || exit 0'
+  ]
+#step 2
+- name: gcr.io/cloud-builders/docker
+  args: [
+   'build', 
+   '-t', 
+   'eu.gcr.io/$PROJECT_ID/wolfchat:$BRANCH_NAME-$COMMIT_SHA',
+   '-t', 
+   'eu.gcr.io/$PROJECT_ID/wolfchat:latest',
+   '.'
+  ]
+#step 3
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=wolfchat-web-cluster1'
+#step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set', 
+   'image', 
+   'deployment', 
+   'wolfchat', 
+   'wolfchat=eu.gcr.io/$PROJECT_ID/wolfchat:$BRANCH_NAME-$COMMIT_SHA'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=wolfchat-web-cluster1'
+# push images to Google Container Registry with tags
+images: [
+   'eu.gcr.io/$PROJECT_ID/wolfchat:$BRANCH_NAME-$COMMIT_SHA',
+   'eu.gcr.io/$PROJECT_ID/wolfchat:latest'
+  ]
