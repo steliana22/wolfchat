@@ -17,14 +17,14 @@
                 <p class="text-secondary nomessages" v-if="chatrooms.length == 0"> Nothing to show here. <br/> Use the + button to create a new chat </p>
                 <div class="messages" v-chat-scroll="{always: false, smooth: true}">
                     <div v-for="chatroom in filteredList" :key="chatroom.id">
-                        <div class="chatroom" @click="gotoMessages(chatroom.id, chatroom.chatname, chatroom.lat, chatroom.lng)">
+                        <div class="chatroom" @click="gotoMessages(chatroom.id, chatroom.chatname, chatroom.lat, chatroom.lng)" >
                             <div class="row">
                                 <div class="col-md-9">
                                     <h5 class="text-dark chatName">{{ chatroom.chatname }}</h5>
                                     <small>{{ chatroom.lat }} <b> x </b> {{ chatroom.lng }}</small>
                                 </div>
                                 <div class="col-md-3">
-                                    <font-awesome-icon icon="chevron-right" size="2x" style="margin-top:5px"/>
+                                    <font-awesome-icon icon="chevron-right" size="2x" style="margin-top:5px; cursor:pointer"/>
                                 </div>
                             </div>
                         </div>
