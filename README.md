@@ -1,3 +1,8 @@
+VueJs App with Leaflet and Firebase
+
+Inspired from: https://medium.com/codingthesmartway-com-blog/building-a-real-time-chat-application-with-vue-js-and-firebase-part-1-670c768ad860 
+and using leaflet tile layer: https://codepen.io/riko11/pen/GExZzQ
+
 # chat
 
 ## Project setup
