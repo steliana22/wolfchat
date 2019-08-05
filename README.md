@@ -30,11 +30,15 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Build and run docker image locally 
 
+-- inspired from: https://mherman.org/blog/dockerizing-a-vue-app/
+
 docker build -t wolfchat_local_image .
 
 docker run -it -p 8080:8080 --rm --name dockerize-vuejs-wolfchat wolfchat_local_image
 
 ### GCP infra steps
+
+-- followed gcp documentation: https://cloud.google.com/kubernetes-engine/docs/quickstart , https://cloud.google.com/container-registry/docs/pushing-and-pulling
 
 gcloud auth login
 
