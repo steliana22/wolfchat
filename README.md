@@ -76,5 +76,7 @@ kubectl get service wolfchat-web
                              
 ### CI/CD
 
+--cloud build
+
 https://medium.com/platformer-blog/ci-cd-with-gke-and-google-cloud-build-98a797ecf346
 
