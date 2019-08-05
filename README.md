@@ -28,13 +28,13 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### Build and run docker image locally 
+### Build and run docker image locally --- http://localhost:8080
 
 -- inspired from: https://mherman.org/blog/dockerizing-a-vue-app/
 
 docker build -t wolfchat_local_image .
 
-docker run -it -p 8080:8080 --rm --name dockerize-vuejs-wolfchat wolfchat_local_image
+docker run -it -p 8080:80 --rm --name dockerize-vuejs-wolfchat wolfchat_local_image
 
 ### GCP infra steps
 
