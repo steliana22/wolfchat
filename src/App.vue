@@ -115,8 +115,9 @@ export default {
 	height: 100%;
 }
 #map {
+	display: flex;
 	width: 100%;
-	height: 700px;
+	height: 100vw;
 	z-index:0;
 }
 .chatbox {
